@@ -1,6 +1,6 @@
-# Project Name
+# LiteNetwork.Extensions
 
-This is a *WIP* cross-platform project developed in C#.
+[LiteNetwork](https://github.com/Eastrall/LiteNetwork) is great, this repository aims to make it a little more awesome with some additional features.
 
 ## Build Instructions
 
@@ -8,15 +8,14 @@ Below is a list of prerequisites and build instructions.
 
 ### Prerequisites
 
-- TODO
+ - [.NET 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 
-### Windows, Mac and Linux
+### Building on Windows, Mac, and Linux
 
 1. Download or clone the repository.
-2. Open `ProjectName.sln` your favourite IDE.
-3. Build the solution (or `dotnet build`).
-4. Run the appropriate *Launcher* (or `dotnet run`).
+2. Open `LiteNetwork.Extensions.sln` in your preferred IDE.
+3. Build the solution (or use `dotnet build`).
 
-## Download
+### Download
 
-Release builds will be available as NuGet packages.
+- Release builds will be accessible on GitHub and as NuGet packages.
