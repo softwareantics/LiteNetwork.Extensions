@@ -1,5 +1,7 @@
 # LiteNetwork.Extensions
 
+[![NuGet Version](https://img.shields.io/nuget/v/LiteNetwork.Extensions.Processing)](https://www.nuget.org/packages/LiteNetwork.Extensions.Processing)
+
 [LiteNetwork](https://github.com/Eastrall/LiteNetwork) is great, this repository aims to make it a little more awesome with some additional features.
 
 ## Features

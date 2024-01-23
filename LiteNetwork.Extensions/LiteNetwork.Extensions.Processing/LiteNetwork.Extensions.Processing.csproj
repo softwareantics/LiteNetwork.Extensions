@@ -5,6 +5,14 @@
     <Nullable>enable</Nullable>
     <AnalysisMode>All</AnalysisMode>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Title>$(AssemblyName)</Title>
+    <Version>2.4.0</Version>
+    <Authors>tdkr80</Authors>
+    <Description>Super simple packet handling support for LiteNetwork.</Description>
+    <PackageProjectUrl>https://github.com/softwareantics/LiteNetwork.Extensions/</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/softwareantics/LiteNetwork.Extensions/</RepositoryUrl>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +21,12 @@
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\Styling\StyleCop\Other\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
