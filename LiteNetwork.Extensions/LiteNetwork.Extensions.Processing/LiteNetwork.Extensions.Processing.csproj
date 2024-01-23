@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Compile Include="..\..\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
+    <Compile Include="..\..\SharedAssemblyInfo.cs" Link="SharedAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\Styling\StyleCop\Other\stylecop.json" Link="stylecop.json" />

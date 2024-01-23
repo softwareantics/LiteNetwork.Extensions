@@ -6,7 +6,6 @@ namespace LiteNetwork.Extensions.Processing.Contexts;
 
 using System;
 using LiteNetwork;
-using LiteNetwork.Extensions.Processing.Extensions;
 using LiteNetwork.Extensions.Processing.Serialization;
 
 /// <summary>
@@ -25,7 +24,7 @@ internal sealed class LitePacketContext : ILitePacketContext
     ///   The serializer used to serialize outgoing packets.
     /// </param>
     /// <exception cref="System.ArgumentNullException">
-    ///   connection or serializer
+    ///   The specified <paramref name="connection"/> or <paramref name="serializer"/> parameter cannot be null.
     /// </exception>
     public LitePacketContext(LiteConnection connection, ILitePacketSerializer serializer)
     {
@@ -43,6 +42,6 @@ internal sealed class LitePacketContext : ILitePacketContext
     public void Send<TPacket>(TPacket packet)
         where TPacket : class
     {
-        this.Connection.SendPacket<TPacket>(packet, this.Serializer);
+        this.Connection.Send(this.Serializer.Serialize(packet));
     }
 }
