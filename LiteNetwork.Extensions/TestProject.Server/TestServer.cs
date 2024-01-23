@@ -1,4 +1,4 @@
-namespace TestProject;
+namespace TestProject.Server;
 
 using System;
 using LiteNetwork.Server;

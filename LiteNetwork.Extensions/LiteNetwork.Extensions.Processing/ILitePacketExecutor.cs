@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 public interface ILitePacketExecutor
 {
-    Task Execute(byte[] payload);
+    Task Execute(byte[] payload, LiteConnection connection);
 }

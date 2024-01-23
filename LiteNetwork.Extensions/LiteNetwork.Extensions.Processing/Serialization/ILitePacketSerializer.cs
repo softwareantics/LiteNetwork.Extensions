@@ -7,4 +7,6 @@ namespace LiteNetwork.Extensions.Processing.Serialization;
 public interface ILitePacketSerializer
 {
     T? Deserialize<T>(byte[] packetBytes);
+
+    byte[] Serialize<T>(T packet);
 }

@@ -6,7 +6,6 @@ namespace LiteNetwork.Extensions.Processing.Server;
 
 using System;
 using System.Threading.Tasks;
-using LiteNetwork.Extensions.Processing.Serialization;
 using LiteNetwork.Server;
 
 public class LiteProcessingServerUser : LiteServerUser
@@ -18,11 +17,9 @@ public class LiteProcessingServerUser : LiteServerUser
         this.executor = executor ?? throw new ArgumentNullException(nameof(executor));
     }
 
-    public ILitePacketSerializer Serializer { get; }
-
     public override async Task HandleMessageAsync(byte[] packetBuffer)
     {
         ArgumentNullException.ThrowIfNull(packetBuffer, nameof(packetBuffer));
-        await this.executor.Execute(packetBuffer).ConfigureAwait(false);
+        await this.executor.Execute(packetBuffer, this).ConfigureAwait(false);
     }
 }

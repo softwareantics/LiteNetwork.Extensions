@@ -2,7 +2,7 @@
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
-namespace LiteNetwork.Extensions.Processing.Server;
+namespace LiteNetwork.Extensions.Processing.Client;
 
 using System;
 using System.Threading.Tasks;
@@ -24,6 +24,6 @@ public class LiteProcessingClient : LiteClient
     public override async Task HandleMessageAsync(byte[] packetBuffer)
     {
         ArgumentNullException.ThrowIfNull(packetBuffer, nameof(packetBuffer));
-        await this.executor.Execute(packetBuffer).ConfigureAwait(false);
+        await this.executor.Execute(packetBuffer, this).ConfigureAwait(false);
     }
 }

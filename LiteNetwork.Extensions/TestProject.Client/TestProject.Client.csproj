@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LiteNetwork.Extensions.Processing\LiteNetwork.Extensions.Processing.csproj" />
+    <ProjectReference Include="..\TestProject.Common\TestProject.Common.csproj" />
   </ItemGroup>
 
 </Project>

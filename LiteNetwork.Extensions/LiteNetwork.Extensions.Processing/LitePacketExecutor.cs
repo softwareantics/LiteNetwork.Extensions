@@ -7,6 +7,8 @@ namespace LiteNetwork.Extensions.Processing;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using LiteNetwork.Extensions.Processing.Contexts;
+using LiteNetwork.Extensions.Processing.Handling;
 using LiteNetwork.Extensions.Processing.Serialization;
 
 public sealed class LitePacketExecutor : ILitePacketExecutor
@@ -21,9 +23,10 @@ public sealed class LitePacketExecutor : ILitePacketExecutor
         this.serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
     }
 
-    public async Task Execute(byte[] payload)
+    public async Task Execute(byte[] payload, LiteConnection connection)
     {
         ArgumentNullException.ThrowIfNull(payload, nameof(payload));
+        ArgumentNullException.ThrowIfNull(connection, nameof(connection));
 
         using (var stream = new MemoryStream(payload))
         {
@@ -44,7 +47,11 @@ public sealed class LitePacketExecutor : ILitePacketExecutor
                 var handler = this.fetcher.FetchHandlerByName(packetName)
                     ?? throw new InvalidOperationException($"Failed to locate packet handler for packet: '{packetName}'.");
 
-                await handler.Handle(packetBytes, this.serializer).ConfigureAwait(false);
+                var context = new LitePacketContext(
+                    connection: connection,
+                    serializer: this.serializer);
+
+                await handler.Handle(packetBytes, context).ConfigureAwait(false);
             }
         }
     }

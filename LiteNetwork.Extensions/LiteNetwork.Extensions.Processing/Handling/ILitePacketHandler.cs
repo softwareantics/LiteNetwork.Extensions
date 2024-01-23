@@ -2,12 +2,12 @@
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
-namespace LiteNetwork.Extensions.Processing;
+namespace LiteNetwork.Extensions.Processing.Handling;
 
 using System.Threading.Tasks;
-using LiteNetwork.Extensions.Processing.Serialization;
+using LiteNetwork.Extensions.Processing.Contexts;
 
 public interface ILitePacketHandler
 {
-    Task Handle(byte[] packetBytes, ILitePacketSerializer serializer);
+    Task Handle(byte[] packetBytes, ILitePacketContext context);
 }

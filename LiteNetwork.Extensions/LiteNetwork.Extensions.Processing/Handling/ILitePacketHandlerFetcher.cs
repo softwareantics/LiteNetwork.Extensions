@@ -2,8 +2,7 @@
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
-namespace LiteNetwork.Extensions.Processing;
-
+namespace LiteNetwork.Extensions.Processing.Handling;
 public interface ILitePacketHandlerFetcher
 {
     ILitePacketHandler FetchHandlerByName(string name);

@@ -1,4 +1,4 @@
-namespace TestProject;
+namespace TestProject.Common;
 
 public class TestPacket
 {
