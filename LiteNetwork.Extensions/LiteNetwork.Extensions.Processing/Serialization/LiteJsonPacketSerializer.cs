@@ -5,6 +5,7 @@
 namespace LiteNetwork.Extensions.Processing.Serialization;
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 using System.Text.Json;
@@ -13,6 +14,7 @@ using System.Text.Json;
 ///   Provides a standard implementation of an <see cref=" ILitePacketSerializer"/>.
 /// </summary>
 /// <seealso cref="ILitePacketSerializer"/>
+[ExcludeFromCodeCoverage(Justification = "Invocation")]
 public sealed class LiteJsonPacketSerializer : ILitePacketSerializer
 {
     /// <inheritdoc/>

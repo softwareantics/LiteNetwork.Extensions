@@ -5,6 +5,7 @@
 namespace LiteNetwork.Extensions.Processing.Handling;
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using LiteNetwork.Extensions.Processing.Contexts;
 
@@ -15,6 +16,7 @@ using LiteNetwork.Extensions.Processing.Contexts;
 ///   The type of the packet to handle.
 /// </typeparam>
 /// <seealso cref="ILitePacketHandler"/>
+[ExcludeFromCodeCoverage(Justification = "Base Implementation")]
 public abstract class LitePacketHandlerBase<TPacket> : ILitePacketHandler
     where TPacket : class
 {
