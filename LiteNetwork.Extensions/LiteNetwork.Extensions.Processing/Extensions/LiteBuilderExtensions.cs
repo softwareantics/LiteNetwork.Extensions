@@ -5,11 +5,13 @@
 namespace LiteNetwork.Extensions.Processing.Extensions;
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using LiteNetwork.Extensions.Processing.Handling;
 using LiteNetwork.Extensions.Processing.Serialization;
 using LiteNetwork.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
+[ExcludeFromCodeCoverage(Justification = "Extensions")]
 public static class LiteBuilderExtensions
 {
     public static ILiteBuilder RegisterPacketHandler<TPacket, TPacketHandler>(this ILiteBuilder builder, ServiceLifetime lifeTime = ServiceLifetime.Singleton)
@@ -21,12 +23,18 @@ public static class LiteBuilderExtensions
         return builder;
     }
 
+    public static ILiteBuilder UseJsonPacketSerialization(this ILiteBuilder builder)
+    {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+        builder.Services.AddSingleton<ILitePacketSerializer, LiteJsonPacketSerializer>();
+        return builder;
+    }
+
     public static ILiteBuilder UsePacketHandling(this ILiteBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-        builder.Services.AddSingleton<ILitePacketExecutor, LitePacketExecutor>();
-        builder.Services.AddSingleton<ILitePacketSerializer, LiteJsonPacketSerializer>();
+        builder.Services.AddSingleton<ILitePacketHandlerExecutor, LitePacketHandlerExecutor>();
         builder.Services.AddSingleton<ILitePacketHandlerFetcher, LitePacketHandlerFetcher>();
 
         return builder;

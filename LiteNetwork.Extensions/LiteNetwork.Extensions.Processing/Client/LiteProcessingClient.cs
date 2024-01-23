@@ -5,22 +5,56 @@
 namespace LiteNetwork.Extensions.Processing.Client;
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using LiteNetwork.Client;
 
+/// <summary>
+///   Provides a basic TCP client implementaion with automated packet handling.
+/// </summary>
+/// <seealso cref="LiteClient"/>
+[ExcludeFromCodeCoverage(Justification = "Invocation")]
 public class LiteProcessingClient : LiteClient
 {
-    private readonly ILitePacketExecutor executor;
+    /// <summary>
+    ///   Responsible for executing packet handlers for incoming packets.
+    /// </summary>
+    private readonly ILitePacketHandlerExecutor executor;
 
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="LiteProcessingClient"/> class.
+    /// </summary>
+    /// <param name="options">
+    ///   The client options.
+    /// </param>
+    /// <param name="executor">
+    ///   The packet executor, responsible for executing packet handlers for incoming packets.
+    /// </param>
+    /// <param name="serviceProvider">
+    ///   The service provider.
+    /// </param>
+    /// <exception cref="System.ArgumentNullException">
+    ///   The specified <paramref name="executor"/> parameter cannot be null.
+    /// </exception>
     public LiteProcessingClient(
         LiteClientOptions options,
-        ILitePacketExecutor executor,
+        ILitePacketHandlerExecutor executor,
         IServiceProvider? serviceProvider = null)
         : base(options, serviceProvider)
     {
         this.executor = executor ?? throw new ArgumentNullException(nameof(executor));
     }
 
+    /// <summary>
+    ///   Handles an incoming packet message asynchronously and executes the appropriate packet handler.
+    /// </summary>
+    /// <param name="packetBuffer">
+    ///   The complete packet buffer.
+    /// </param>
+    /// <exception cref="ArgumentNullException">
+    ///   The specified <paramref name="packetBuffer"/> parameter cannot be null.
+    /// </exception>
+    /// <inheritdoc/>
     public override async Task HandleMessageAsync(byte[] packetBuffer)
     {
         ArgumentNullException.ThrowIfNull(packetBuffer, nameof(packetBuffer));

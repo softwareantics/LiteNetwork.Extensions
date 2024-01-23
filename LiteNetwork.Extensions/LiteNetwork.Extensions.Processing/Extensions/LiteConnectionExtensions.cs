@@ -5,8 +5,10 @@
 namespace LiteNetwork.Extensions.Processing.Extensions;
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using LiteNetwork.Extensions.Processing.Serialization;
 
+[ExcludeFromCodeCoverage(Justification = "Extensions")]
 public static class LiteConnectionExtensions
 {
     public static void SendPacket<TPacket>(this LiteConnection connection, TPacket packet, ILitePacketSerializer serializer)

@@ -9,14 +9,26 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 
+/// <summary>
+///   Provides a standard implementation of an <see cref=" ILitePacketSerializer"/>.
+/// </summary>
+/// <seealso cref="ILitePacketSerializer"/>
 public sealed class LiteJsonPacketSerializer : ILitePacketSerializer
 {
+    /// <inheritdoc/>
+    /// <exception cref="ArgumentNullException">
+    ///   The specified <paramref name="packetBytes"/> parameter cannot be null.
+    /// </exception>
     public T? Deserialize<T>(byte[] packetBytes)
     {
         ArgumentNullException.ThrowIfNull(packetBytes, nameof(packetBytes));
         return JsonSerializer.Deserialize<T>(packetBytes);
     }
 
+    /// <inheritdoc/>
+    /// <exception cref="ArgumentNullException">
+    ///   The specified <paramref name="packet"/> parameter cannot be null.
+    /// </exception>
     public byte[] Serialize<T>(T packet)
     {
         ArgumentNullException.ThrowIfNull(packet, nameof(packet));
