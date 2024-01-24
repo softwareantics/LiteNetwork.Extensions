@@ -6,7 +6,7 @@
     <AnalysisMode>All</AnalysisMode>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Title>$(AssemblyName)</Title>
-    <Version>2.4.0</Version>
+    <Version>2.4.1</Version>
     <Authors>tdkr80</Authors>
     <Description>Super simple packet handling support for LiteNetwork.</Description>
     <PackageProjectUrl>https://github.com/softwareantics/LiteNetwork.Extensions/</PackageProjectUrl>
