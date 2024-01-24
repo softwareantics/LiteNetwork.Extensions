@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LiteNetwork.Extensions.Processing\LiteNetwork.Extensions.Processing.csproj" />
+    <ProjectReference Include="..\LiteNetwork.Extensions.Processing\LiteNetwork.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

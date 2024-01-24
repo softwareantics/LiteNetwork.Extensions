@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiteNetwork.Extensions.Processing", "LiteNetwork.Extensions.Processing\LiteNetwork.Extensions.Processing.csproj", "{4B120916-5B70-4D49-A681-E175327E65DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiteNetwork.Extensions", "LiteNetwork.Extensions.Processing\LiteNetwork.Extensions.csproj", "{4B120916-5B70-4D49-A681-E175327E65DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiteNetwork.Extensions.Tests", "LiteNetwork.Extensions.Tests\LiteNetwork.Extensions.Tests.csproj", "{6F746485-B45D-4757-8765-BB236E0D4999}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiteNetwork.Extensions.Tests", "LiteNetwork.Extensions.Tests\LiteNetwork.Extensions.Tests.csproj", "{6F746485-B45D-4757-8765-BB236E0D4999}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Processing", "Processing", "{EF0BE4F8-CFBB-46B4-858A-955101924407}"
 EndProject
