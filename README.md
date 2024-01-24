@@ -1,12 +1,17 @@
 # LiteNetwork.Extensions
 
-[![NuGet Version](https://img.shields.io/nuget/v/LiteNetwork.Extensions.Processing)](https://www.nuget.org/packages/LiteNetwork.Extensions.Processing)
+[![NuGet Version](https://img.shields.io/nuget/v/LiteNetwork.Extensions)](https://www.nuget.org/packages/LiteNetwork.Extensions)
 
 [LiteNetwork](https://github.com/Eastrall/LiteNetwork) is great, this repository aims to make it a little more awesome with some additional features.
 
 ## Features
 
-### Simple Packet Handling
+- Simple and easy handling of incoming packets via dependency injection.
+- Added the ability to regsiter a client to an `IServiceCollection` _without_ registering a hosted service.
+
+### Examples
+
+#### Simple Packet Handling
 
 With [LiteNetwork.Extensions](https://github.com/softwareantics/LiteNetwork.Extensions/) you can easily send and receive packets via the packet handling feature. Setup is super simple, the steps are as follows:
 
