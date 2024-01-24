@@ -68,6 +68,6 @@ public class LiteProcessingServerUser : LiteServerUser
     /// </param>
     public void Send<TPacket>(TPacket packet)
     {
-        this.Send(this.executor.Serializer.Serialize(packet));
+        base.Send(this.executor.Serializer.Serialize(packet));
     }
 }
