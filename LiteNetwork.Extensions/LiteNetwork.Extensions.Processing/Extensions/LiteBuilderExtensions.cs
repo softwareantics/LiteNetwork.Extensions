@@ -6,6 +6,7 @@ namespace LiteNetwork.Extensions.Processing.Extensions;
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using LiteNetwork.Client;
 using LiteNetwork.Extensions.Processing.Handling;
 using LiteNetwork.Extensions.Processing.Serialization;
 using LiteNetwork.Hosting;
@@ -17,6 +18,46 @@ using Microsoft.Extensions.DependencyInjection;
 [ExcludeFromCodeCoverage(Justification = "Extensions")]
 public static class LiteBuilderExtensions
 {
+    /// <summary>
+    ///   Adds the LiteClient service to the dependency injection container with the specified client interfaces and implementation, along with a configuration action.
+    /// </summary>
+    /// <typeparam name="TLiteClient">
+    ///   The interface type representing the LiteClient service contract.
+    /// </typeparam>
+    /// <typeparam name="TLiteClientImplementation">
+    ///   The concrete implementation type of the LiteClient.
+    /// </typeparam>
+    /// <param name="builder">
+    ///   The LiteBuilder instance to which the LiteClient service is added.
+    /// </param>
+    /// <param name="configure">
+    ///   The action that configures the LiteClient using LiteClientOptions.
+    /// </param>
+    /// <returns>
+    ///   The LiteBuilder instance with the added LiteClient service.
+    /// </returns>
+    /// <remarks>
+    ///   Call this method if you wish to register your client without registering it as a hosted service.
+    /// </remarks>
+    public static ILiteBuilder AddLiteClientService<TLiteClient, TLiteClientImplementation>(this ILiteBuilder builder, Action<LiteClientOptions> configure)
+            where TLiteClient : class
+            where TLiteClientImplementation : LiteClient, TLiteClient
+    {
+        ArgumentNullException.ThrowIfNull(builder);
+
+        builder.Services.AddSingleton<TLiteClientImplementation>(serviceProvider =>
+        {
+            return ConfigureClient<TLiteClientImplementation>(serviceProvider, configure);
+        });
+
+        builder.Services.AddSingleton<TLiteClient, TLiteClientImplementation>(serviceProvider =>
+        {
+            return serviceProvider.GetRequiredService<TLiteClientImplementation>();
+        });
+
+        return builder;
+    }
+
     /// <summary>
     ///   Registers a packet handler with the specified packet type and packet handler type.
     /// </summary>
@@ -89,5 +130,29 @@ public static class LiteBuilderExtensions
         builder.Services.AddSingleton<ILitePacketHandlerFetcher, LitePacketHandlerFetcher>();
 
         return builder;
+    }
+
+    /// <summary>
+    ///   Configures the LiteClient, a lightweight client, using the specified service provider and configuration action.
+    /// </summary>
+    /// <typeparam name="TLiteClient">
+    ///   The type of the LiteClient to be configured.
+    /// </typeparam>
+    /// <param name="serviceProvider">
+    ///   The service provider providing necessary services for LiteClient configuration.
+    /// </param>
+    /// <param name="configure">
+    ///   The action that defines the configuration settings for the LiteClient using LiteClientOptions.
+    /// </param>
+    /// <returns>
+    ///   An instance of the configured LiteClient.
+    /// </returns>
+    private static TLiteClient ConfigureClient<TLiteClient>(IServiceProvider serviceProvider, Action<LiteClientOptions> configure)
+        where TLiteClient : LiteClient
+    {
+        LiteClientOptions options = new();
+        configure(options);
+
+        return ActivatorUtilities.CreateInstance<TLiteClient>(serviceProvider, options);
     }
 }

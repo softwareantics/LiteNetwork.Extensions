@@ -23,11 +23,6 @@ public sealed class LitePacketHandlerExecutor : ILitePacketHandlerExecutor
     private readonly ILitePacketHandlerFetcher fetcher;
 
     /// <summary>
-    ///   Responsible for serializing incoming and outgoing packets.
-    /// </summary>
-    private readonly ILitePacketSerializer serializer;
-
-    /// <summary>
     ///   Initializes a new instance of the <see cref="LitePacketHandlerExecutor"/> class.
     /// </summary>
     /// <param name="fetcher">
@@ -42,8 +37,16 @@ public sealed class LitePacketHandlerExecutor : ILitePacketHandlerExecutor
     public LitePacketHandlerExecutor(ILitePacketHandlerFetcher fetcher, ILitePacketSerializer serializer)
     {
         this.fetcher = fetcher ?? throw new ArgumentNullException(nameof(fetcher));
-        this.serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
+        this.Serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
     }
+
+    /// <summary>
+    ///   Gets the serializer.
+    /// </summary>
+    /// <value>
+    ///   The serializer.
+    /// </value>
+    public ILitePacketSerializer Serializer { get; }
 
     /// <inheritdoc/>
     /// <exception cref="ArgumentNullException">
@@ -74,7 +77,7 @@ public sealed class LitePacketHandlerExecutor : ILitePacketHandlerExecutor
 
                 var context = new LitePacketContext(
                     connection: connection,
-                    serializer: this.serializer);
+                    serializer: this.Serializer);
 
                 await handler.Handle(packetBytes, context).ConfigureAwait(false);
             }
